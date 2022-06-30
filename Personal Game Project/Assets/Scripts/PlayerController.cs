@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             onGround = false;
         }
+
+        // Getting the mouse input
+        Debug.Log(Input.mousePosition.x + ", " + Input.mousePosition.y);
     }
 
     private void OnCollisionEnter(Collision collision)
