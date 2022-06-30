@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public bool isOnGround;
 
+    // Boundries
+    private float xBound = 20f;
+    private float zBound = 20f;
+
       /////////////////
      /// Functions ///
     /////////////////
@@ -55,8 +59,25 @@ public class PlayerController : MonoBehaviour
         // Simple movement
         controller.Move(move * speed * Time.deltaTime);
 
+        // Setting some boundaries
+        if(transform.position.x < -xBound)
+        {
+            transform.position = new Vector3(-xBound, transform.position.y, transform.position.z);
+        } else if (transform.position.x > xBound)
+        {
+            transform.position = new Vector3(xBound, transform.position.y, transform.position.z);
+        }
+
+        if(transform.position.z > zBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zBound);
+        } else if (transform.position.z < -zBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zBound);
+        }
+
         // Making the player jump
-        if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             vel.y = Mathf.Sqrt(jumpH * -2f * g);
         }
