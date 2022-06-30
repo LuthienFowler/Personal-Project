@@ -15,4 +15,12 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+
+
+
+    // Controls
+
+    // Use mouse to turn
+    // wasd or arrows to move (But tbh does anyone really use the arrows?)
+    // Space to jump
 }
