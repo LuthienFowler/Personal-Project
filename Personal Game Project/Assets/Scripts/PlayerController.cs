@@ -40,14 +40,27 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Physics check
+        CheckPhysics();
+        Move();
+        Jump();
+        Fall();
+        SetBounds();
+    }
+
+    // Checking if we are on the ground or not
+    void CheckPhysics()
+    {
         isOnGround = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
 
-        if(isOnGround && vel.y < 0)
+        if (isOnGround && vel.y < 0)
         {
             vel.y = -2f;
         }
+    }
 
+    // Moving the player
+    void Move()
+    {
         // Getting the input for the horizontal axis and vertical axis
         float hi = Input.GetAxis("Horizontal");
         float vi = Input.GetAxis("Vertical");
@@ -55,23 +68,32 @@ public class PlayerController : MonoBehaviour
         // Move variable
         Vector3 move = transform.right * hi + transform.forward * vi;
 
-        
         // Simple movement
         controller.Move(move * speed * Time.deltaTime);
+    }
 
-        // Making the player jump
+    // Making the player jump
+    void Jump()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             vel.y = Mathf.Sqrt(jumpH * -2f * g);
         }
+    }
 
+    // Making it so the player can fall
+    void Fall()
+    {
         // Increasing velocity over time
         vel.y += g * Time.deltaTime;
 
         // Having the player be able to fall
         controller.Move(vel * Time.deltaTime);
+    }
 
-        // Setting some boundaries
+    // Setting the boundaries of the game
+    void SetBounds()
+    {
         if (transform.position.x < -xBound)
         {
             transform.position = new Vector3(-xBound, transform.position.y, transform.position.z);
@@ -89,12 +111,5 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -zBound);
         }
-
     }
-
-    // Controls
-
-    // Use mouse to turn
-    // wasd or arrows to move (But tbh does anyone really use the arrows?)
-    // Space to jump
 }
