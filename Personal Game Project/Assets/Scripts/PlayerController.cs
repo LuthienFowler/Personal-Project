@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     private float speed = 0.2f;
     private Rigidbody playerRb;
+    public bool onGround = true;
+    private float jumpForce = 10.0f;
 
       /////////////////
      /// Functions ///
@@ -32,9 +34,22 @@ public class PlayerController : MonoBehaviour
         // Simple movement
         transform.position += Vector3.forward * speed * vi;
         transform.position += Vector3.right * speed * hi;
-        
+
+        // Jumping
+        if(Input.GetKeyDown(KeyCode.Space) && onGround)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            onGround = false;
+        }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (gameObject.CompareTag("Ground"))
+        {
+            onGround = true;
+        }
+    }
 
 
     // Controls
