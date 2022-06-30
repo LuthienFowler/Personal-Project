@@ -11,8 +11,14 @@ public class PlayerController : MonoBehaviour
     // movement vars
     public float speed = 12f;
     public CharacterController controller;
+
+    // Gravity
     Vector3 vel;
     public float g = -9.81f;
+
+    // Ground check
+    public Transform groundCheck;
+    public float groundDist;
 
       /////////////////
      /// Functions ///
