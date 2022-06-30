@@ -9,10 +9,8 @@ public class PlayerController : MonoBehaviour
     /////////////////
 
     // movement vars
-    private float speed = 0.2f;
-    private Rigidbody playerRb;
-    public bool onGround = true;
-    private float jumpForce = 5.0f;
+    public float speed = 12f;
+    public PlayerController controller;
 
       /////////////////
      /// Functions ///
@@ -21,8 +19,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Getting the player's rigid body
-        playerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -37,25 +33,9 @@ public class PlayerController : MonoBehaviour
 
 
         // Simple movement
-        transform.position += Vector3.forward * speed * vi;
-        transform.position += Vector3.right * speed * hi;
+        controller.Move(move * speed * Time.deltaTime);
 
-        // Jumping
-        if(Input.GetKeyDown(KeyCode.Space) && onGround)
-        {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            onGround = false;
-        }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            onGround = true;
-        }
-    }
-
 
     // Controls
 
