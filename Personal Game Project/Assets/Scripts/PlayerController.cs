@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 12f;
     public CharacterController controller;
     Vector3 vel;
-    public float g;
+    public float g = -9.81f;
 
       /////////////////
      /// Functions ///
@@ -39,7 +39,10 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
 
         // Increasing velocity over time
-        vel.y += g;
+        vel.y += g * Time.deltaTime;
+
+        // Having the player be able to fall
+        controller.Move(vel * Time.deltaTime);
 
     }
 
