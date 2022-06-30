@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 5.0f;
 
     // Cursor pos
-    public float maxX;
-    public float minX;
-    public float maxY;
-    public float minY;
+    public float maxX = 100.0f;
+    public float minX = 100.0f;
+    public float maxY = 100.0f;
+    public float minY = 100.0f;
 
       /////////////////
      /// Functions ///
@@ -51,8 +51,6 @@ public class PlayerController : MonoBehaviour
 
         // Getting the mouse input
         Debug.Log(Input.mousePosition.x + ", " + Input.mousePosition.y);
-
-        // Restricting the mouse movement
         
     }
 
@@ -62,6 +60,14 @@ public class PlayerController : MonoBehaviour
         {
             onGround = true;
         }
+    }
+
+    private void OnGUI()
+    {
+        Vector3 mousePosition = Event.current.mousePosition;
+
+        mousePosition.x = Mathf.Clamp(mousePosition.x, minX, maxX);
+        mousePosition.y = Mathf.Clamp(mousePosition.y, minY, maxY);
     }
 
 
