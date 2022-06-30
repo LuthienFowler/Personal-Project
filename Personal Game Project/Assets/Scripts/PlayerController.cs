@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 5.0f;
 
     // Cursor pos
-    private float maxX;
-    private float minX;
-    private float maxY;
-    private float minY;
+    public float maxX;
+    public float minX;
+    public float maxY;
+    public float minY;
 
       /////////////////
      /// Functions ///
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(Input.mousePosition.x + ", " + Input.mousePosition.y);
 
         // Restricting the mouse movement
+        
     }
 
     private void OnCollisionEnter(Collision collision)
