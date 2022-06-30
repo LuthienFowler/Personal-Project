@@ -14,12 +14,6 @@ public class PlayerController : MonoBehaviour
     public bool onGround = true;
     private float jumpForce = 5.0f;
 
-    // Cursor pos
-    public float maxX = 100.0f;
-    public float minX = 100.0f;
-    public float maxY = 100.0f;
-    public float minY = 100.0f;
-
       /////////////////
      /// Functions ///
     /////////////////
@@ -48,10 +42,6 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             onGround = false;
         }
-
-        // Getting the mouse input
-        Debug.Log(Input.mousePosition.x + ", " + Input.mousePosition.y);
-        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -60,14 +50,6 @@ public class PlayerController : MonoBehaviour
         {
             onGround = true;
         }
-    }
-
-    private void OnGUI()
-    {
-        Vector3 mousePosition = Event.current.mousePosition;
-
-        mousePosition.x = Mathf.Clamp(mousePosition.x, minX, maxX);
-        mousePosition.y = Mathf.Clamp(mousePosition.y, minY, maxY);
     }
 
 
