@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 1594655468}
   - component: {fileID: 1594655467}
   - component: {fileID: 1594655466}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1084,3 +1084,8 @@ MonoBehaviour:
   speed: 12
   controller: {fileID: 2136737324}
   g: -9.81
+  groundCheck: {fileID: 884529994}
+  groundDist: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 512

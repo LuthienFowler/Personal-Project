@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundDist = 0.4f;
     public LayerMask groundMask;
-    bool isOnGround;
+    public bool isOnGround;
 
       /////////////////
      /// Functions ///
