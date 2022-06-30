@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     // movement vars
     public float speed = 12f;
     public CharacterController controller;
+    public float jumpH = 3f;
 
     // Gravity
     Vector3 vel;
@@ -53,6 +54,12 @@ public class PlayerController : MonoBehaviour
 
         // Simple movement
         controller.Move(move * speed * Time.deltaTime);
+
+        // Making the player jump
+        if(Input.GetKeyDown("Jump") && isOnGround)
+        {
+            vel.y = Mathf.Sqrt(jumpH * -2f * g);
+        }
 
         // Increasing velocity over time
         vel.y += g * Time.deltaTime;
