@@ -8,10 +8,17 @@ public class PlayerController : MonoBehaviour
      /// Variables ///
     /////////////////
 
+    // movement vars
     private float speed = 0.2f;
     private Rigidbody playerRb;
     public bool onGround = true;
     private float jumpForce = 5.0f;
+
+    // Cursor pos
+    private float maxX;
+    private float minX;
+    private float maxY;
+    private float minY;
 
       /////////////////
      /// Functions ///
@@ -44,6 +51,8 @@ public class PlayerController : MonoBehaviour
 
         // Getting the mouse input
         Debug.Log(Input.mousePosition.x + ", " + Input.mousePosition.y);
+
+        // Restricting the mouse movement
     }
 
     private void OnCollisionEnter(Collision collision)
