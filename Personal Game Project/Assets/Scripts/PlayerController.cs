@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
 
         // Making the player jump
-        if(Input.GetKeyDown("Space") && isOnGround)
+        if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             vel.y = Mathf.Sqrt(jumpH * -2f * g);
         }
