@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private float speed = 0.2f;
     private Rigidbody playerRb;
     public bool onGround = true;
-    private float jumpForce = 10.0f;
+    private float jumpForce = 5.0f;
 
       /////////////////
      /// Functions ///
