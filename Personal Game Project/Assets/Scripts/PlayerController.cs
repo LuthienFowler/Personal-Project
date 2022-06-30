@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     // movement vars
     public float speed = 12f;
     public CharacterController controller;
+    Vector3 vel;
+    public float g;
 
       /////////////////
      /// Functions ///
@@ -35,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
         // Simple movement
         controller.Move(move * speed * Time.deltaTime);
+
+        // Increasing velocity over time
+        vel.y += g;
 
     }
 
