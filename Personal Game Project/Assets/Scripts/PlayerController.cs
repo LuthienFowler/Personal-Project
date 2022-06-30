@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
 
     // Ground check
     public Transform groundCheck;
-    public float groundDist;
+    public float groundDist = 0.4f;
+    public LayerMask groundMask;
+    bool isOnGround;
 
       /////////////////
      /// Functions ///
@@ -33,6 +35,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Physics check
+        isOnGround = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
+
+        if(isOnGround && vel.y < 0)
+        {
+            vel.y = -2f;
+        }
+
         // Getting the input for the horizontal axis and vertical axis
         float hi = Input.GetAxis("Horizontal");
         float vi = Input.GetAxis("Vertical");
