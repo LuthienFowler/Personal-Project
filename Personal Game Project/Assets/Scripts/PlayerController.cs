@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround;
 
     // Boundries
-    private float xBound = 20f;
-    private float zBound = 20f;
+    private float xBound = 24.5f;
+    private float zBound = 24.5f;
 
       /////////////////
      /// Functions ///
@@ -55,26 +55,9 @@ public class PlayerController : MonoBehaviour
         // Move variable
         Vector3 move = transform.right * hi + transform.forward * vi;
 
-
+        
         // Simple movement
         controller.Move(move * speed * Time.deltaTime);
-
-        // Setting some boundaries
-        if(transform.position.x < -xBound)
-        {
-            transform.position = new Vector3(-xBound, transform.position.y, transform.position.z);
-        } else if (transform.position.x > xBound)
-        {
-            transform.position = new Vector3(xBound, transform.position.y, transform.position.z);
-        }
-
-        if(transform.position.z > zBound)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zBound);
-        } else if (transform.position.z < -zBound)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -zBound);
-        }
 
         // Making the player jump
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
@@ -87,6 +70,25 @@ public class PlayerController : MonoBehaviour
 
         // Having the player be able to fall
         controller.Move(vel * Time.deltaTime);
+
+        // Setting some boundaries
+        if (transform.position.x < -xBound)
+        {
+            transform.position = new Vector3(-xBound, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x > xBound)
+        {
+            transform.position = new Vector3(xBound, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.z > zBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zBound);
+        }
+        else if (transform.position.z < -zBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zBound);
+        }
 
     }
 
