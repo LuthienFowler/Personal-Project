@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     // movement vars
     public float speed = 12f;
-    public PlayerController controller;
+    public CharacterController controller;
 
       /////////////////
      /// Functions ///
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Getting the character controller
+        controller = gameObject.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
