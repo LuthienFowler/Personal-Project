@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     private float xBound = 24.5f;
     private float zBound = 24.5f;
 
+    //Power ups 
+    private bool jumpPowerupActivated = false;
+    private bool speedPowerupActivated = false;
+
       /////////////////
      /// Functions ///
     /////////////////
@@ -45,6 +49,8 @@ public class PlayerController : MonoBehaviour
         Jump();
         Fall();
         SetBounds();
+
+        Debug.Log($"Jump = {jumpPowerupActivated}, Speed = {jumpPowerupActivated}");
     }
 
     // Checking if we are on the ground or not
@@ -55,6 +61,21 @@ public class PlayerController : MonoBehaviour
         if (isOnGround && vel.y < 0)
         {
             vel.y = -2f;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Powerup_Jump"))
+        {
+            jumpPowerupActivated = true;
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Powerup_Speed"))
+        {
+            speedPowerupActivated = true;
+            Destroy(other.gameObject);
         }
     }
 
