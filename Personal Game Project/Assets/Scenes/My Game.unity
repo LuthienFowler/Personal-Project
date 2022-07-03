@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 830796346}
   m_Layer: 0
   m_Name: Powerup_Jump
-  m_TagString: Untagged
+  m_TagString: Powerup_Jump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 956640577}
   m_Layer: 0
   m_Name: Powerup_Speed
-  m_TagString: Untagged
+  m_TagString: Powerup_Speed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
