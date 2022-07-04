@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         Fall();
         SetBounds();
 
-        Debug.Log($"Jump = {jumpPowerupActivated}, Speed = {jumpPowerupActivated}");
+        Debug.Log("Speed: " + speedPowerupActivated + " Jump: " + jumpPowerupActivated);
     }
 
     // Checking if we are on the ground or not
@@ -108,15 +108,32 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * hi + transform.forward * vi;
 
         // Simple movement
-        controller.Move(move * speed * Time.deltaTime);
+        if (!speedPowerupActivated)
+        {
+            controller.Move(move * speed * Time.deltaTime);
+
+        }else if (speedPowerupActivated)
+        {
+            controller.Move(move * speed * powerupSpeedMultiplier * Time.deltaTime);
+        }
     }
 
     // Making the player jump
     void Jump()
     {
+        // Jumping if the player is on the ground
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            vel.y = Mathf.Sqrt(jumpH * -2f * g);
+            // Checking if the player has a power up or not
+            if (!jumpPowerupActivated)
+            {
+                vel.y = Mathf.Sqrt(jumpH * -2f * g);
+
+            } else if (jumpPowerupActivated)
+            {
+                vel.y = Mathf.Sqrt(jumpH * -2f * g * powerupJumpMultiplier);
+
+            }
         }
     }
 
