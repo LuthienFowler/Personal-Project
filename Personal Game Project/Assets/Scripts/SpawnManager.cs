@@ -15,8 +15,8 @@ public class SpawnManager : MonoBehaviour
     private float spawnY = 5f;
 
     // Time
-    private float minTime = 5f;
-    private float maxTime = 10f;
+    private float minTime = 10f;
+    private float maxTime = 30f;
 
     // Start is called before the first frame update
     void Start()
