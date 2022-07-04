@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     //Power ups 
     private bool jumpPowerupActivated = false;
     private bool speedPowerupActivated = false;
+    private float powerupSpeedMultiplier = 5.0f;
+    private float powerupJumpMultiplier = 5.0f;
 
       /////////////////
      /// Functions ///
@@ -64,19 +66,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // When the player collides with a trigger (In this case, a power up)
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Powerup_Jump"))
         {
             jumpPowerupActivated = true;
             Destroy(other.gameObject);
-        }
+            StartCoroutine(PowerupJumpTimer());
 
-        if (other.CompareTag("Powerup_Speed"))
+        } else if (other.CompareTag("Powerup_Speed"))
         {
             speedPowerupActivated = true;
             Destroy(other.gameObject);
+            StartCoroutine(PowerupSpeedTimer());
         }
+    }
+
+    // Making the jump power up timer
+    IEnumerator PowerupJumpTimer()
+    {
+        yield return new WaitForSeconds(5);
+        jumpPowerupActivated = false;
+    }
+
+    // Making the speed power up timer
+    IEnumerator PowerupSpeedTimer()
+    {
+        yield return new WaitForSeconds(5);
+        speedPowerupActivated = false;
     }
 
     // Moving the player
